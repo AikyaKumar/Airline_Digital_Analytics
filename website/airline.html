@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Airline Flight Search Demo</title>
+
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-M8PHHVFP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    </script>
+    <!-- End Google Tag Manager -->
+
+</head>
+
+<body>
+
+    <h2>Airline Flight Search</h2>
+
+    <label>Origin:</label>
+    <select id="origin">
+        <option value="FRA">Frankfurt</option>
+        <option value="MUC">Munich</option>
+        <option value="BER">Berlin</option>
+    </select>
+
+    <br><br>
+
+    <label>Destination:</label>
+    <select id="destination">
+        <option value="ZRH">Zurich</option>
+        <option value="LHR">London</option>
+        <option value="JFK">New York</option>
+    </select>
+
+    <br><br>
+
+    <label>Passengers:</label>
+    <input type="number" id="passengers"
+           value="1" min="1" max="9">
+
+    <br><br>
+
+    <button onclick="searchFlights()">
+        Search Flights
+    </button>
+
+    <script>
+        function searchFlights() {
+
+            const origin =
+                document.getElementById("origin").value;
+
+            const destination =
+                document.getElementById("destination").value;
+
+            const passengers =
+                Number(document.getElementById("passengers").value);
+
+            window.dataLayer.push({
+                event: "flight_search",
+                flight_origin: origin,
+                flight_destination: destination,
+                passenger_count: passengers,
+                trip_type: "one_way"
+            });
+
+            console.log("Data layer:", window.dataLayer);
+
+            alert("Flight search event pushed!");
+        }
+    </script>
+
+</body>
+</html>
